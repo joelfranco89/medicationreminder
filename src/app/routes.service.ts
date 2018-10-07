@@ -12,7 +12,8 @@ export class RoutesService {
 
   constructor( private http: Http) { }
   
-  url = 'http://localhost:8080' || process.env.LIVEURL
+  localurl = 'http://localhost:8080'
+  url = 'https://medicationreminder.herokuapp.com'
   
   getReminder(){
     return this.http.get(this.url + '/api/getReminder').map((response: Response) => response.json()) 
