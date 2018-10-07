@@ -11,7 +11,7 @@ var db = mongoose.connect('mongodb://joel:player73189@ds119523.mlab.com:19523/re
 var app = express()
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/medicationReminder'));
 
 
 app.use(function(req, res, next){
@@ -23,7 +23,7 @@ app.use(function(req, res, next){
 });
 
 app.get('/*', function(req,res) {   
-    res.sendFile(path.join(__dirname+'/dist/index.html'));
+    res.sendFile(path.join(__dirname+'/dist/medicationReminder/index.html'));
 });
 
 

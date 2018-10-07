@@ -24,8 +24,14 @@ export class ReminderFormComponent implements OnInit {
 
   allReminders;
 
-
-
+  
+  firstName;
+  lastName;
+  email;
+  medicineName;
+  frequency;
+  amountOfPills;
+  
 
 
   constructor(private reminderService: RoutesService) { }
