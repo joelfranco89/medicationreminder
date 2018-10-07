@@ -15,14 +15,14 @@ app.use(express.static(__dirname + '/dist/medicationReminder'));
 
 
 app.use(function(req, res, next){
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 
-app.get('/*', function(req,res) {   
+app.get('/*all', function(req,res) {   
     res.sendFile(path.join(__dirname+'/dist/medicationReminder/index.html'));
 });
 
@@ -155,8 +155,11 @@ app.get('/api/removereminder/:id', function(req, res){
 setInterval(sendingEmails, 1000);
 
 
+
+
+const host = '0.0.0.0';
 const port = process.env.PORT || 8080;
 
-
-
-app.listen(process.env.PORT || 8080)
+app.listen(port, host, function() {
+  console.log("Server started.......");
+});
