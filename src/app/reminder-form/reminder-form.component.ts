@@ -24,6 +24,8 @@ export class ReminderFormComponent implements OnInit {
 
   allReminders;
 
+  reminderSent;
+
   
   firstName;
   lastName;
@@ -48,7 +50,7 @@ export class ReminderFormComponent implements OnInit {
     for (var i = 2; i < 61; i++){
       this.everyMinuteTimelineArray.push(i);
     }
-
+    console.log(this.reminderSent);
   }
 
   frequencySelected(selection){
@@ -68,10 +70,16 @@ export class ReminderFormComponent implements OnInit {
 
   onSave(newReminder){
     this.reminderService.saveReminder(newReminder).subscribe(reminder => {
-      console.log(reminder);
+      this.reminderSent = true;
+      console.log(this.reminderSent);
       this.ngOnInit()
     });
   }
+
+  reminderSubmitted(){
+    this.reminderSent = true
+  }
+
 
 
 }
