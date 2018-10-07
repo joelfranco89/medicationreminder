@@ -1,0 +1,52 @@
+<form #reminderForm='ngForm' class='bg-secondary p-4 rounded' (ngSubmit)='onSave(reminderForm.value)' novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>First Name</label>
+        <input class="form-control" name="firstName" placeholder="John" [(ngModel)]='firstName' #formFirstName='ngModel' required>
+        <div class="alert alert-danger" *ngIf='formFirstName?.errors?.required && (formFirstName.dirty || formFirstName.touched)'>First Name is required</div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Last Name</label>
+        <input class="form-control" name='lastName' placeholder="Doe" [(ngModel)]='lastName' #formLastName='ngModel' required>
+        <div class="alert alert-danger" *ngIf='formLastName?.errors?.required && (formLastName.dirty || formLastName.touched)'>Last Name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input class="form-control"  name="email" placeholder="jdoe@abc.com" [(ngModel)]='email' email #formEmail='ngModel' required>
+      <div class="alert alert-danger" *ngIf='formEmail?.errors?.required && (formEmail.dirty || formEmail.touched)'>Email is required</div>
+      <div class="alert alert-danger" *ngIf='formEmail.errors?.email && !formEmail?.errors?.required && (formEmail.dirty || formEmail.touched)'>Please enter a valid email</div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Medicine Name</label>
+      <input type="text" class="form-control" name='medicineName' [(ngModel)]='medicineName' #formMedicineName='ngModel' placeholder="ie. Synthroid, Cresotor, Ventolin etc.. " required>
+      <div class="alert alert-danger" *ngIf='formMedicineName?.errors?.required && (formMedicineName.dirty || formMedicineName.touched)'>Name of medicine is required</div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Frequency</label>
+      <select (change)='frequencySelected($event.target.value)' name='frequency' [(ngModel)]='frequency' class="form-control" required>
+        <option *ngFor='let frequency of frequencyOptions'  [value]="frequency" >{{frequency}}</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="inputState">Amount</label>
+        <input type="number" class="form-control" name="amountOfPills" [(ngModel)]='amountOfPills' #formPills='ngModel' placeholder="Number of pills" required>
+        <div class="alert alert-danger" *ngIf='formPills?.errors?.required && (formPills.dirty || formPills.touched)'>Amount of pills is required</div>
+      </div>
+      <div *ngIf='selectedFrequency == "Hourly"' class="form-group col-md-2">
+        <label for="inputZip">Timeline</label>
+        <select (change)='hourlyTimelineSelected($event.target.value)' name='timeLine' [(ngModel)]='timeLine' class="form-control" required>
+          <option *ngFor='let timeline of hourlyTimelineArray' [value]="timeline">{{timeline}} hours</option>
+        </select>
+      </div>      
+      <div *ngIf='selectedFrequency == "Every Minute"' class="form-group col-md-2">
+          <label for="inputZip">Timeline</label>
+          <select (change)='everyMinuteTimelineSelected($event.target.value)' name='timeLine' [(ngModel)]='timeLine' class="form-control" required>
+            <option  [value]="1" selected>1 minute</option>
+            <option *ngFor='let timeline of everyMinuteTimelineArray' [value]="timeline">{{timeline}} minutes</option>
+          </select>
+        </div>
+    </div>
+    <button [disabled]='reminderForm.invalid' type="submit" class="btn btn-primary">Submit</button>
+  </form>
