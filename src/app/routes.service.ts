@@ -12,14 +12,15 @@ export class RoutesService {
 
   constructor( private http: Http) { }
   
-
+  url = 'http://localhost:8080' || process.env.LIVEURL
+  
   getReminder(){
-    return this.http.get('http://localhost:8080/api/getReminder').map((response: Response) => response.json()) 
+    return this.http.get(this.url + '/api/getReminder').map((response: Response) => response.json()) 
   }
 
 
   saveReminder(reminder){
-    return this.http.post('http://localhost:8080/api/saveReminder', reminder).map((response: Response) => response.json())
+    return this.http.post(this.url + '/api/saveReminder', reminder).map((response: Response) => response.json())
   }
 
 }

@@ -162,4 +162,5 @@ const port = process.env.PORT || 8080;
 
 app.listen(port, host, function() {
   console.log("Server started.......");
+  console.log(process.env.PORT);
 });
