@@ -63,8 +63,8 @@ app.post('/api/saveReminder', function(req, res){
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-            user: 'joel.franco0789@gmail.com',
-            pass: 'player73189'
+            user: 'medicationreminderapp5@gmail.com',
+            pass: '123Qwert!'
             }
         });
         
