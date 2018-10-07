@@ -23,7 +23,7 @@ app.use(function(req, res, next){
 });
 
 app.get('/*', function(req,res) {   
-    res.sendFile(path.join(__dirname+'/dist/medicationReminder'));
+    res.sendFile(path.join(__dirname+'/dist/medicationReminder/index.html'));
 });
 
 
