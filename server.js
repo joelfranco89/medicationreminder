@@ -100,7 +100,7 @@ function sendingEmails(){
                     pass: '123Qwert!'
                     }
                 });
-                
+                var url = process.env.LIVEURL || 'http://localhost:8080'
                 var mailOptions = {
                     from: 'medicationreminderapp5@gmail.com',
                     to: reminder.email,
@@ -109,7 +109,7 @@ function sendingEmails(){
                           'Please remember to take your medicine..\n\n' +
                           reminder.medicineName + ' , ' + reminder.amountOfPills + ' pills.\n\n' +
                           'To remove this reminder, click on the link below\n\n' +
-                          'http://localhost:8080/api/removereminder/' + reminder._id      
+                          url + '/api/removereminder/' + reminder._id      
                 };
                 
                 transporter.sendMail(mailOptions, function(error, info){
