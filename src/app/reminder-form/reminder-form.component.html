@@ -1,5 +1,5 @@
 <form #reminderForm='ngForm' class='bg-secondary p-4 rounded' (ngSubmit)='onSave(reminderForm.value)' novalidate>
-    <div class="alert alert-danger" *ngIf='reminderSent'>Reminder has been created!</div>
+    <div class="alert alert-primary" *ngIf='reminderSent'>Reminder has been created!</div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label>First Name</label>
