@@ -3,7 +3,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     Reminder = require('./backend/model'),
-    nodemailer = require('nodemailer')
+    nodemailer = require('nodemailer'),
+    path = require('path')
 
 var db = mongoose.connect('mongodb://joel:player73189@ds119523.mlab.com:19523/reminderform', {useNewUrlParser: true});
 
@@ -20,10 +21,10 @@ app.use(function(req, res, next){
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-// Function to set reminder
-// function timerFunction(frequency, timeline){
 
-// }
+app.get('/*', function(req,res) {   
+    res.sendFile(path.join(__dirname+'/dist'));
+});
 
 
 app.get('/api/getReminder', function(req, res){
@@ -153,11 +154,9 @@ app.get('/api/removereminder/:id', function(req, res){
 
 setInterval(sendingEmails, 1000);
 
-const host = '0.0.0.0';
+
 const port = process.env.PORT || 8080;
 
 
 
-app.listen(port, host, function() {
-  console.log("Server started.......");
-});
+app.listen(process.env.PORT || 8080)
