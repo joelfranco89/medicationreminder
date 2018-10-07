@@ -109,7 +109,7 @@ function sendingEmails(){
                           'Please remember to take your medicine..\n\n' +
                           reminder.medicineName + ' , ' + reminder.amountOfPills + ' pills.\n\n' +
                           'To remove this reminder, click on the link below\n\n' +
-                          url + '/api/removereminder/' + reminder._id      
+                          'http://localhost:8080/api/removereminder/' + reminder._id      
                 };
                 
                 transporter.sendMail(mailOptions, function(error, info){
