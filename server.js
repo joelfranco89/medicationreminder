@@ -7,7 +7,7 @@ var express = require('express'),
     path = require('path')
 
 var db = mongoose.connect('mongodb://joel:player73189@ds119523.mlab.com:19523/reminderform', {useNewUrlParser: true});
-
+var url = process.env.LIVEURL || 'http://localhost:8080'
 var app = express()
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -100,7 +100,7 @@ function sendingEmails(){
                     pass: '123Qwert!'
                     }
                 });
-                var url = process.env.LIVEURL || 'http://localhost:8080'
+                
                 var mailOptions = {
                     from: 'medicationreminderapp5@gmail.com',
                     to: reminder.email,
@@ -145,7 +145,7 @@ app.get('/api/removereminder/:id', function(req, res){
         if (err){
             res.send(err);
         }else{
-            res.redirect('http://localhost:4200');
+            res.redirect(url);
         }
     })
 });
@@ -157,4 +157,9 @@ setInterval(sendingEmails, 1000);
 
 
 
-app.listen(process.env.PORT || 8080);
+const host = '0.0.0.0';
+const port = process.env.PORT || 8080;
+
+app.listen(port, host, function() {
+  console.log("Server started.......");
+});
